@@ -1,61 +1,21 @@
+import json
 import argparse  # pragma: no cover
 
-from . import BaseClass, base_function  # pragma: no cover
-
-
-def main() -> None:  # pragma: no cover
-    """
-    The main function executes on commands:
-    `python -m auto_letter` and `$ auto_letter `.
-
-    This is your program's entry point.
-
-    You can change this function to do whatever you want.
-    Examples:
-        * Run a test suite
-        * Run a server
-        * Do some other stuff
-        * Run a command line application (Click, Typer, ArgParse)
-        * List all available tasks
-        * Run an application (Flask, FastAPI, Django, etc.)
-    """
-    parser = argparse.ArgumentParser(
-        description="auto_letter.",
-        epilog="Enjoy the auto_letter functionality!",
-    )
-    # This is required positional argument
-    parser.add_argument(
-        "name",
-        type=str,
-        help="The username",
-        default="KlausH09",
-    )
-    # This is optional named argument
-    parser.add_argument(
-        "-m",
-        "--message",
-        type=str,
-        help="The Message",
-        default="Hello",
-        required=False,
-    )
-    parser.add_argument(
-        "-v",
-        "--verbose",
-        action="store_true",
-        help="Optionally adds verbosity",
-    )
-    args = parser.parse_args()
-    print(f"{args.message} {args.name}!")
-    if args.verbose:
-        print("Verbose mode is on.")
-
-    print("Executing main function")
-    base = BaseClass()
-    print(base.base_method())
-    print(base_function())
-    print("End of main function")
-
+from . import LetterGen  # pragma: no cover
 
 if __name__ == "__main__":  # pragma: no cover
-    main()
+
+    parser = argparse.ArgumentParser(description="Create letters from JSON")
+    parser.add_argument("json_file", type=str, help="path to the JSON file")
+    parser.add_argument("output_path", type=str, help="path to save the PDF", default="./out")
+    args = parser.parse_args()
+
+    with open(args.json_file, "r", encoding="utf8") as fd:
+        letter_data = json.load(fd)
+
+    letterGen = LetterGen.fromDict(letter_data)
+    doc = letterGen.dump()
+
+    # tex = doc.dumps()
+    # doc.generate_tex(args.output_path)
+    doc.generate_pdf(args.output_path, clean_tex=False, compiler="pdflatex")

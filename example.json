@@ -1,0 +1,58 @@
+{
+    "sender": {
+        "person": {
+            "salutation": "Herr",
+            "surename": "Hello",
+            "lastname": "World",
+            "title_": "Dr.",
+            "title": null
+        },
+        "address": {
+            "street": "HelloWorld-Street 47",
+            "city": "HelloWorldTown",
+            "postcode": "55555"
+        },
+        "phone": {
+            "data": "+49 176 38038409"
+        },
+        "email": {
+            "data": "k.happacher@gmail.com"
+        },
+        "signature_": null,
+        "signature": {
+            "path": "./Unterschrift.png"
+        }
+    },
+    "recipient": {
+        "company": "FooBar AG",
+        "address": {
+            "street": "FooBar-Street 47",
+            "city": "FooBarTown",
+            "postcode": "12345"
+        },
+        "person_": null,
+        "person": {
+            "salutation": "Frau",
+            "surename": "Foo",
+            "lastname": "Bar",
+            "title_": "Dr.",
+            "title": null
+        }
+    },
+    "date_and_location": {
+        "date": "today",
+        "city": "BarTown",
+        "date_format": "dd. MMMM yyyy",
+        "date_location": "de_DE"
+    },
+    "subject": "Invitation for FooBar meeting",
+    "opening": {
+        "None": "Sehr geehrte Damen und Herren",
+        "Herr": "Sehr geehrter",
+        "Frau": "Sehr geehrte"
+    },
+    "content": [
+        "there is nothing more to say!"
+    ],
+    "closing": "Mit freundlichen Grüßen"
+}
